@@ -13,7 +13,7 @@ class BaseWorker
     uri = URI('https://api.openai.com/v1/chat/completions')
     request = Net::HTTP::Post.new(uri)
     request['Content-Type'] = 'application/json'
-    request['Authorization'] = "Bearer sk-proj-Cj6hirXyl3yCzy4uNOPlT3BlbkFJyODdluDmwOcB4ATDdu7d"
+    request['Authorization'] = "Bearer #{Rails.credentials.openai.api_key}"
 
     request.body = {
       model: 'gpt-4-turbo',
