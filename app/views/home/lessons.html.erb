@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @lessons.each do |lesson| %>
+            <tr>
+                <td><%= lesson.name %></td>
+                <td>
+                    <%= link_to 'Show', lesson_home_path(lesson_id: lesson.id) %>
+                </td>
+            </tr>
+        <% end %> 
+    </tbody>
+</table>

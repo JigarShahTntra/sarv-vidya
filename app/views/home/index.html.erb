@@ -1,0 +1,28 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Link</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @courses.each do |course| %>
+            <tr>
+                <td><%= course.name %></td>
+                <td>
+                    <%= link_to 'Show', lessons_home_path(course) %>
+                </td>
+                <td>
+                    <%= link_to 'Delete', course_home_path(course), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                </td>
+            </tr>
+        <% end %> 
+    </tbody>
+</table>
+<%= form_tag(home_index_path) do %>
+  <div class="field">
+    <%= label_tag :topic %>
+    <%= text_field_tag :topic %>
+  </div>
+  <%= submit_tag "Submit" %>
+<% end %>
