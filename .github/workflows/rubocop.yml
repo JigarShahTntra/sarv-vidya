@@ -1,25 +1,29 @@
-name: RuboCop
+name: Run RuboCop
 
-on:
+on: 
   push:
-    paths:
-      - /**
+    branches:
+      - '**'
 
 jobs:
-  vm-job:
-    name: RuboCop check
+  rubocop:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./
+
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-      - uses: ruby/setup-ruby@v1
-        with:
-          working-directory: ./
-          ruby-version: '3.2.2'
-          bundler-cache: true
-      - name: Run RuboCop
-        working-directory: ./
-        run: bundle exec rubocop -P
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2.2'
+        bundler-cache: true
+
+    - name: Install Bundler
+      run: gem install bundler
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run RuboCop
+      run: bundle exec rubocop
