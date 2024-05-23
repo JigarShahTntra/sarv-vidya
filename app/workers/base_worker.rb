@@ -12,6 +12,7 @@ class BaseWorker
   def requests(custom_text ='')
     uri = URI('https://api.openai.com/v1/chat/completions')
     request = Net::HTTP::Post.new(uri)
+    
     request['Content-Type'] = 'application/json'
     request['Authorization'] = "Bearer #{Rails.credentials.openai.api_key}"
 
